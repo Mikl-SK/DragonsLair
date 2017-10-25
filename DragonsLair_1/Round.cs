@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace DragonsLair_1
 {
@@ -15,7 +17,7 @@ namespace DragonsLair_1
         {
             foreach (Match match in matches)
             {
-                if ((match.FirstOpponent.Equals(teamName1) && match.SecondOpponent.Equals(teamName2)) || 
+                if ((match.FirstOpponent.Equals(teamName1) && match.SecondOpponent.Equals(teamName2)) ||
                     (match.FirstOpponent.Equals(teamName2) && match.SecondOpponent.Equals(teamName1)))
                 {
                     return match;
@@ -27,7 +29,7 @@ namespace DragonsLair_1
         public bool IsMatchesFinished()
         {
             bool areMatchesFinished = true;
-            foreach  (Match match in matches)
+            foreach (Match match in matches)
             {
                 if (match.Winner == null)
                 {
@@ -52,7 +54,7 @@ namespace DragonsLair_1
             List<Team> losingTeams = new List<Team>();
             foreach (Match match in matches)
             {
-                if(match.FirstOpponent == match.Winner)
+                if (match.FirstOpponent == match.Winner)
                 {
                     losingTeams.Add(match.SecondOpponent);
                 }
@@ -60,7 +62,7 @@ namespace DragonsLair_1
                 {
                     losingTeams.Add(match.FirstOpponent);
                 }
-                
+
             }
             return losingTeams;
         }
