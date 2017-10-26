@@ -29,11 +29,11 @@ namespace DragonsLair_1
         public void EqualNumberOfWinnersAndLosersPerRound()
         {
             int numberOfRounds = currentTournament.GetNumberOfRounds();
-            for (int round = 0; round < numberOfRounds -1; round++)
+            for (int round = 0; round < numberOfRounds; round++)
             {
                 Round currentRound = currentTournament.GetRound(round);
                 int numberOfWinningTeams = currentRound.GetWinningTeams().Count;
-                int numberOfLosingTeams = currentRound.GetLosingTeams().Count();
+                int numberOfLosingTeams = currentRound.GetLosingTeams().Count;
                 Assert.AreEqual(numberOfWinningTeams, numberOfLosingTeams);
             }
         }
