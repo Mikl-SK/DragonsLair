@@ -98,9 +98,32 @@ namespace DragonsLair_1
                         Round newRound = new Round();
                         if (teams.Count % 2 == 1)
                         {
+                            Team oldFreeRider = lastRound.GetFreeRider();
+                            Team newFreeRider;
                             //freerider holdet springer runden over
+                            int i = 0;
+                            do
+                            {
+                                newFreeRider = teams[i];
+                                i++;
+                            } while (oldFreeRider.Equals(teams[i]));
 
+                            teams.Remove(newFreeRider);
+                            newRound.Add(newFreeRider);
                         }
+                        int numberOfMatches = teams.Count / 2;
+                        for (int i = 0; i < numberOfMatches; i++)
+                        {
+                            Match newMatch = new Match();
+                            Team first = teams[0];
+                            teams.Remove(teams[0]);
+                            Team second = teams[0];
+                            teams.Remove(teams[0]);
+                            newMatch.FirstOpponent = first;
+                            newMatch.SecondOpponent = second;
+                            newRound.Add(newMatch);
+                        }
+                        
                     }
                 }
             }
