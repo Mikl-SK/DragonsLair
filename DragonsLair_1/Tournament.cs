@@ -39,25 +39,25 @@ namespace DragonsLair_1
                 match1.FirstOpponent = new Team("The Valyrians");
                 match1.SecondOpponent = new Team("The Spartans");
                 match1.Winner = new Team("The Valyrians");
-                r.AddMatch(match1);
+                r.Add(match1);
 
                 Match match2 = new Match();
                 match2.FirstOpponent = new Team("The Cretans");
                 match2.SecondOpponent = new Team("The Thereans");
                 match2.Winner = new Team("The Thereans");
-                r.AddMatch(match2);
+                r.Add(match2);
 
                 Match match3 = new Match();
                 match3.FirstOpponent = new Team("The Coans");
                 match3.SecondOpponent = new Team("The Cnideans");
                 match3.Winner = new Team("The Coans");
-                r.AddMatch(match3);
+                r.Add(match3);
 
                 Match match4 = new Match();
                 match4.FirstOpponent = new Team("The Megareans");
                 match4.SecondOpponent = new Team("The Corinthians");
                 match4.Winner = new Team("The Corinthians");
-                r.AddMatch(match4);
+                r.Add(match4);
 
             }
             else if (idx == 1)
@@ -66,13 +66,13 @@ namespace DragonsLair_1
                 match1.FirstOpponent = new Team("The Valyrians");
                 match1.SecondOpponent = new Team("The Thereans");
                 match1.Winner = new Team("The Valyrians");
-                r.AddMatch(match1);
+                r.Add(match1);
 
                 Match match2 = new Match();
                 match2.FirstOpponent = new Team("The Coans");
                 match2.SecondOpponent = new Team("The Corinthians");
                 match2.Winner = new Team("The Coans");
-                r.AddMatch(match2);
+                r.Add(match2);
             }
             else if (idx == 2)
             {
@@ -80,7 +80,7 @@ namespace DragonsLair_1
                 match1.FirstOpponent = new Team("The Valyrians");
                 match1.SecondOpponent = new Team("The Coans");
                 match1.Winner = new Team("The Coans");
-                r.AddMatch(match1);
+                r.Add(match1);
             }
             return r;
         }
