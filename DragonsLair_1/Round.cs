@@ -71,5 +71,10 @@ namespace DragonsLair_1
         {
             return freeRider;
         }
+        public void Add(Team newFreeRider)
+        {
+            freeRider = newFreeRider;
+        }
+
     }
 }
