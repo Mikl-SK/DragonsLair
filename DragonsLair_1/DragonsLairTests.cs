@@ -56,7 +56,7 @@ namespace DragonsLair_1
             for (int round = 0; round < numberOfRounds - 1; round++)
             {
                 Round currentRound = currentTournament.GetRound(round);
-                if (currentRound.IsMatchesFinished() == false)
+                if (currentRound.IsRoundFinished() == false)
                     matchesFinished = false;
             }
             Assert.AreEqual(true, matchesFinished);

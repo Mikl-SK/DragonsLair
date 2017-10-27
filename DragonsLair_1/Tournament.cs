@@ -5,6 +5,7 @@ namespace DragonsLair_1
     public class Tournament
     {
         public string Name { get; set; }
+        private List<Round> rounds = new List<Round>();
 
         public Tournament(string tournamentName)
         {
@@ -83,6 +84,10 @@ namespace DragonsLair_1
                 r.AddMatch(match1);
             }
             return r;
+        }
+        public void Add(Round newRound)
+        {
+            rounds.Add(newRound);
         }
     }
 }

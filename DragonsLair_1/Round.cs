@@ -26,7 +26,7 @@ namespace DragonsLair_1
             return null;
         }
 
-        public bool IsMatchesFinished()
+        public bool IsRoundFinished()
         {
             bool areMatchesFinished = true;
             foreach (Match match in matches)
@@ -45,6 +45,10 @@ namespace DragonsLair_1
             foreach (Match match in matches)
             {
                 winningTeams.Add(match.Winner);
+            }
+            if (freeRider != null)
+            {
+                winningTeams.Add(freeRider);
             }
             return winningTeams;
         }
