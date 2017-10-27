@@ -47,6 +47,10 @@ namespace DragonsLair_1
             {
                 winningTeams.Add(match.Winner);
             }
+            if (freeRider != null)
+            {
+                winningTeams.Add(freeRider);
+            }
             return winningTeams;
         }
 

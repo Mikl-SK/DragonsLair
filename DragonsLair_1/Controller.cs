@@ -65,7 +65,45 @@ namespace DragonsLair_1
 
         public void ScheduleNewRound(string tournamentName, bool printNewMatches = true)
         {
-            // Do not implement this method
+            TournamentRepo tr = new TournamentRepo();
+            Tournament t = tr.GetTournament(tournamentName);
+            int numberOfRounds = t.GetNumberOfRounds();
+            if(numberOfRounds == 0)
+            {
+                List<Team> teams = new List<Team>();
+                teams = t.GetTeams();
+            }
+            else
+            { 
+                Round lastRound;
+                lastRound = t.GetRound(numberOfRounds - 1);
+                bool isRoundFinished = lastRound.IsRoundFinished();
+                if(isRoundFinished)
+                {
+                    List<Team> teams = lastRound.GetWinningTeams();
+
+                    if (teams.Count > 1)
+                    {
+                        //fundet på stackoverflow skal undersøges nærmere.
+                        Random rng = new Random();
+                        int n = teams.Count;
+                        while (n > 1)
+                        {
+                            n--;
+                            int k = rng.Next(n + 1);
+                            Team value = teams[k];
+                            teams[k] = teams[n];
+                            teams[n] = value;
+                        }
+                        Round newRound = new Round();
+                        if (teams.Count % 2 == 1)
+                        {
+                            //freerider holdet springer runden over
+
+                        }
+                    }
+                }
+            }
         }
 
         public void SaveMatch(string tournamentName, int roundNumber, string team1, string team2, string winningTeam)
