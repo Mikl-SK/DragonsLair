@@ -27,6 +27,11 @@ namespace DragonsLair_1
             return null;
         }
 
+        public List<Match> GetMatches()
+        {
+            return matches;
+        }
+
         public bool IsRoundFinished()
         {
             bool areMatchesFinished = true;

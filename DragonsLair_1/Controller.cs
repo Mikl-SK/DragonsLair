@@ -67,66 +67,99 @@ namespace DragonsLair_1
         {
             TournamentRepo tr = new TournamentRepo();
             Tournament t = tr.GetTournament(tournamentName);
-            int numberOfRounds = t.GetNumberOfRounds();
-            if(numberOfRounds == 0)
+            int numberOfRounds = t.GetNumberOfRounds()-1;
+            List<Team> teams = new List<Team>();
+            Team oldFreeRider;
+            Round lastRound;
+            lastRound = t.GetRound(numberOfRounds - 1);
+            if (numberOfRounds == 0)
             {
-                List<Team> teams = new List<Team>();
                 teams = t.GetTeams();
             }
             else
             { 
-                Round lastRound;
-                lastRound = t.GetRound(numberOfRounds - 1);
+
                 bool isRoundFinished = lastRound.IsRoundFinished();
                 if(isRoundFinished)
                 {
-                    List<Team> teams = lastRound.GetWinningTeams();
+                    teams = lastRound.GetWinningTeams();
 
-                    if (teams.Count > 1)
-                    {
-                        //fundet på stackoverflow skal undersøges nærmere.
-                        Random rng = new Random();
-                        int n = teams.Count;
-                        while (n > 1)
-                        {
-                            n--;
-                            int k = rng.Next(n + 1);
-                            Team value = teams[k];
-                            teams[k] = teams[n];
-                            teams[n] = value;
-                        }
-                        Round newRound = new Round();
-                        if (teams.Count % 2 == 1)
-                        {
-                            Team oldFreeRider = lastRound.GetFreeRider();
-                            Team newFreeRider;
-                            //freerider holdet springer runden over
-                            int i = 0;
-                            do
-                            {
-                                newFreeRider = teams[i];
-                                i++;
-                            } while (oldFreeRider.Equals(teams[i]));
+                }
+                else
+                {
 
-                            teams.Remove(newFreeRider);
-                            newRound.Add(newFreeRider);
-                        }
-                        int numberOfMatches = teams.Count / 2;
-                        for (int i = 0; i < numberOfMatches; i++)
-                        {
-                            Match newMatch = new Match();
-                            Team first = teams[0];
-                            teams.Remove(teams[0]);
-                            Team second = teams[0];
-                            teams.Remove(teams[0]);
-                            newMatch.FirstOpponent = first;
-                            newMatch.SecondOpponent = second;
-                            newRound.Add(newMatch);
-                        }
-                        
-                    }
+                    Console.WriteLine("Runden er endnu ikke afsluttet");
                 }
             }
+            if (teams.Count > 1)
+            {
+                //fundet på stackoverflow skal undersøges nærmere.
+                Random rng = new Random();
+                int n = teams.Count;
+                while (n > 1)
+                {
+                    n--;
+                    int k = rng.Next(n + 1);
+                    Team value = teams[k];
+                    teams[k] = teams[n];
+                    teams[n] = value;
+                }
+                Round newRound = new Round();
+                if (teams.Count % 2 == 1)
+                {
+                    oldFreeRider = lastRound.GetFreeRider();
+                    Team newFreeRider;
+                    //freerider holdet springer runden over
+                    int i = 0;
+                    do
+                    {
+                        newFreeRider = teams[i];
+                        i++;
+                    } while (oldFreeRider.Equals(teams[i]));
+
+                    teams.Remove(newFreeRider);
+                    newRound.Add(newFreeRider);
+                }
+                int numberOfMatches = teams.Count / 2;
+                for (int i = 0; i < numberOfMatches; i++)
+                {
+                    Match newMatch = new Match();
+                    Team first = teams[0];
+                    teams.Remove(teams[0]);
+                    Team second = teams[0];
+                    teams.Remove(teams[0]);
+                    newMatch.FirstOpponent = first;
+                    newMatch.SecondOpponent = second;
+                    newRound.Add(newMatch);
+                }
+
+                // Jesper har tilføjet herfra
+                t.Add(newRound);
+                if (printNewMatches)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Kommende Runde:");
+                    Console.WriteLine("---------------");
+                    List<Match> matches = newRound.GetMatches();
+                    int i = 1;
+                    foreach (Match match in matches)
+                    {
+                        Console.WriteLine(i + ". " + match.FirstOpponent.Name + " vs. " + match.SecondOpponent.Name);
+                        i++;
+                    }
+                    Console.ReadKey();
+                }
+            }
+            else
+            {
+                // SetStatusFinished() er tilføjet til tournament-klassen
+                t.SetStatusFinished();
+                Console.WriteLine("Turneringen " + t.Name + " er afsluttet");
+                Console.ReadKey();
+                Console.Clear();
+            }
+
+            // Jesper out.
         }
 
         public void SaveMatch(string tournamentName, int roundNumber, string team1, string team2, string winningTeam)

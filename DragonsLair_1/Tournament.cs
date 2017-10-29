@@ -1,15 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DragonsLair_1
 {
     public class Tournament
     {
+        public bool IsTournamentFinished { get; set; }
         public string Name { get; set; }
         private List<Round> rounds = new List<Round>();
 
         public Tournament(string tournamentName)
         {
             Name = tournamentName;
+            IsTournamentFinished = false;
         }
 
         public List<Team> GetTeams()
@@ -28,7 +31,7 @@ namespace DragonsLair_1
 
         public int GetNumberOfRounds()
         {
-            return 3;
+            return 1;
         }
         
         public Round GetRound(int idx)
@@ -88,6 +91,11 @@ namespace DragonsLair_1
         public void Add(Round newRound)
         {
             rounds.Add(newRound);
+        }
+
+        internal void SetStatusFinished()
+        {
+            IsTournamentFinished = true;
         }
     }
 }
