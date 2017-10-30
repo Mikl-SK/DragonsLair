@@ -6,10 +6,12 @@ namespace DragonsLair_1
     {
         public string Name { get; set; }
         private List<Round> rounds = new List<Round>();
+        public bool IsTournamentFinished { get; set; }
 
         public Tournament(string tournamentName)
         {
             Name = tournamentName;
+            IsTournamentFinished = false;
         }
 
         public List<Team> GetTeams()
@@ -88,6 +90,10 @@ namespace DragonsLair_1
         public void Add(Round newRound)
         {
             rounds.Add(newRound);
+        }
+        public void SetStatusFinished()
+        {
+            IsTournamentFinished = true;
         }
     }
 }
