@@ -89,5 +89,19 @@ namespace DragonsLair_1
         {
             rounds.Add(newRound);
         }
+
+        public Team GetTeam(string teamName)
+        {
+            List<Team> teams = GetTeams();
+            foreach (Team team in teams)
+            {
+                if (teamName == team.Name)
+                {
+                    return team;
+                }
+            }
+
+            return null;
+        }
     }
 }
