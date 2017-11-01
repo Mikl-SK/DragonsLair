@@ -16,9 +16,9 @@ namespace DragonsLair_1
             Dictionary<string, int> score = new Dictionary<string, int>();
 
             // Henter alle vindere i alle runder og giver holdene et point per vunden kamp
-            for (int j = 0; j < tournament.GetNumberOfRounds(); j++)
+            for (int team = 0; team < tournament.GetNumberOfRounds(); team++)
             {
-                List<Team> winningTeams = tournament.GetRound(j).GetWinningTeams();
+                List<Team> winningTeams = tournament.GetRound(team).GetWinningTeams();
                 foreach (Team winningTeam in winningTeams)
                 {
                     int updateNumber = 1;
