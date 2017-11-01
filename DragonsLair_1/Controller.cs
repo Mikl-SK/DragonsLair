@@ -16,9 +16,9 @@ namespace DragonsLair_1
             Dictionary<string, int> score = new Dictionary<string, int>();
 
             // Henter alle vindere i alle runder og giver holdene et point per vunden kamp
-            for (int j = 0; j < tournament.GetNumberOfRounds(); j++)
+            for (int team = 0; team < tournament.GetNumberOfRounds(); team++)
             {
-                List<Team> winningTeams = tournament.GetRound(j).GetWinningTeams();
+                List<Team> winningTeams = tournament.GetRound(team).GetWinningTeams();
                 foreach (Team winningTeam in winningTeams)
                 {
                     int updateNumber = 1;
@@ -113,6 +113,7 @@ namespace DragonsLair_1
                     int i = 0;
                     do
                     {
+
                         newFreeRider = teams[i];
                         i++;
                     } while (oldFreeRider.Equals(teams[i]));
@@ -148,6 +149,7 @@ namespace DragonsLair_1
                         i++;
                     }
                     Console.ReadKey();
+
                 }
             }
             else
@@ -162,9 +164,25 @@ namespace DragonsLair_1
             // Jesper out.
         }
 
-        public void SaveMatch(string tournamentName, int roundNumber, string team1, string team2, string winningTeam)
+        public string SaveMatch(string tournamentName, int roundNumber, string winningTeam)
         {
-            // Do not implement this method
+            TournamentRepo tr = new TournamentRepo();
+            Tournament t = tr.GetTournament(tournamentName);
+            Round r = t.GetRound(roundNumber -1);
+            Match m = r.GetMatch(winningTeam);
+
+            if (m != null && m.Winner == null)
+            {
+                Team w = t.GetTeam(winningTeam);
+                m.SetWinner(w);
+                return "Du har opdateret vinder";
+            }
+            else
+            {
+                return "Der er sket en fejl";
+            }
         }
+
+        
     }
 }

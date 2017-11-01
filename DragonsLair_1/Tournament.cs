@@ -8,6 +8,7 @@ namespace DragonsLair_1
         public bool IsTournamentFinished { get; set; }
         public string Name { get; set; }
         private List<Round> rounds = new List<Round>();
+        public bool IsTournamentFinished { get; set; }
 
         public Tournament(string tournamentName)
         {
@@ -93,9 +94,24 @@ namespace DragonsLair_1
             rounds.Add(newRound);
         }
 
-        internal void SetStatusFinished()
+        public Team GetTeam(string teamName)
+        {
+            List<Team> teams = GetTeams();
+            foreach (Team team in teams)
+            {
+                if (teamName == team.Name)
+                {
+                    return team;
+                }
+            }
+
+            return null;
+        }
+
+        public void SetStatusFinished()
         {
             IsTournamentFinished = true;
+
         }
     }
 }
