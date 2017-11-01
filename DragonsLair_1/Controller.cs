@@ -123,8 +123,18 @@ namespace DragonsLair_1
                             newMatch.SecondOpponent = second;
                             newRound.Add(newMatch);
                         }
-                        
+                        t.Add(newRound);
                     }
+                    else
+                    {
+                        t.SetStatusFinished();
+                    }
+                    
+                }
+                else
+                {
+                    Console.WriteLine("Fejl runden er ikke færdig");
+                    Console.ReadLine();
                 }
             }
         }
