@@ -16,7 +16,9 @@ namespace DragonsLair_1
             Dictionary<string, int> score = new Dictionary<string, int>();
 
             // Henter alle vindere i alle runder og giver holdene et point per vunden kamp
-            for (int team = 0; team < tournament.GetNumberOfRounds(); team++)
+            //for (int team = 0; team < tournament.GetNumberOfRounds(); team++)
+            // Demo sætning
+            for (int team = 0; team < 3; team++)
             {
                 List<Team> winningTeams = tournament.GetRound(team).GetWinningTeams();
                 foreach (Team winningTeam in winningTeams)
@@ -50,17 +52,15 @@ namespace DragonsLair_1
 
             // skriver rudimentært scoreboard til skærm
             Console.Clear();
+            Console.WriteLine("  Slutstilling for " + tournament.Name + ":");
+            Console.WriteLine("--------------------------------------------\n");
             foreach (KeyValuePair<string, int> pair in items)
             {
 
-                Console.WriteLine( pair.Key +": " + pair.Value);
+                Console.WriteLine( "  " +pair.Key +": " + pair.Value);
             }
             Console.ReadKey();
             Console.Clear();
-            /*
-             * TODO: Calculate for each team how many times they have won
-             * Sort based on number of matches won (descending)
-             */
         }
 
         public void ScheduleNewRound(string tournamentName, bool printNewMatches = true)
@@ -71,7 +71,7 @@ namespace DragonsLair_1
             List<Team> teams = new List<Team>();
             Team oldFreeRider;
             Round lastRound;
-            lastRound = t.GetRound(numberOfRounds - 1);
+            lastRound = t.GetRound(numberOfRounds);
             if (numberOfRounds == 0)
             {
                 teams = t.GetTeams();
@@ -149,7 +149,6 @@ namespace DragonsLair_1
                         i++;
                     }
                     Console.ReadKey();
-
                 }
             }
             else
