@@ -5,7 +5,6 @@ namespace DragonsLair_1
 {
     public class Tournament
     {
-        public bool IsTournamentFinished { get; set; }
         public string Name { get; set; }
         private List<Round> rounds = new List<Round>();
         public bool IsTournamentFinished { get; set; }
